@@ -27,6 +27,7 @@ if page == "📋 Pending Sales Orders":
     # SAP Process Flow Table (Representing real SAP objects and statuses)
     st.subheader("📋 Orders Blocked due to Credit Limit Failures")
 
+    # Fixed data dictionary with complete array lists
     sap_orders = {
         "Sales Order (VA01)":,
         "Customer Name": ["Reliance Retail", "Kiran Electronics", "Mahesh Enterprises"],
