@@ -20,24 +20,30 @@ if page == "📋 Pending Sales Orders":
     with col_kpi2:
         st.metric(label="On-Time-In-Full (OTIF)", value="94.2%", delta="+1.5%")
     with col_kpi3:
-        st.metric(label="Credit Exposure Total", value="₹12,45,000", delta="High Risk Alert", delta_color="inverse")
+        st.metric(label="Credit Exposure Total", value="Rs. 12,45,000", delta="High Risk Alert", delta_color="inverse")
 
     st.write("---")
 
-    # SAP Process Flow Table (Representing real SAP objects and statuses)
+    # SAP Process Flow Table
     st.subheader("📋 Orders Blocked due to Credit Limit Failures")
 
-    # Fixed data dictionary with complete array lists
+    # Using standard text values to ensure it never creates a syntax breakdown
+    order_ids = ["SO-100241", "SO-100242", "SO-100243"]
+    customer_names = ["Reliance Retail", "Kiran Electronics", "Mahesh Enterprises"]
+    order_values = [500000, 120000, 850000]
+    credit_limits = [300000, 150000, 400000]
+    delays_list = ["3 Times", "0 Times", "7 Times"]
+
     sap_orders = {
-        "Sales Order (VA01)":,
-        "Customer Name": ["Reliance Retail", "Kiran Electronics", "Mahesh Enterprises"],
-        "Order Value (INR)":,
-        "Available Credit Limit (INR)":,
-        "Payment History Delays": ["3 Times", "0 Times", "7 Times"]
+        "Sales Order (VA01)": order_ids,
+        "Customer Name": customer_names,
+        "Order Value (INR)": order_values,
+        "Available Credit Limit (INR)": credit_limits,
+        "Payment History Delays": delays_list
     }
     df = pd.DataFrame(sap_orders)
 
-    # Grounded AI Element: Simulating a predictive risk scoring algorithm based on historical data
+    # Grounded AI Element
     def calculate_ai_risk(row):
         if row["Order Value (INR)"] > row["Available Credit Limit (INR)"] and "7" in row["Payment History Delays"]:
             return "🔴 HIGH RISK (Reject Advised)"
@@ -52,7 +58,7 @@ if page == "📋 Pending Sales Orders":
     st.write("---")
     st.subheader("🛠️ Executive Action Panel")
 
-    selected_order = st.selectbox("Select Sales Order to Process:", df["Sales Order (VA01)"])
+    selected_order = st.selectbox("Select Sales Order to Process:", order_ids)
     action_reason = st.text_input("Enter business justification for release/rejection:")
 
     col_btn1, col_btn2 = st.columns(2)
